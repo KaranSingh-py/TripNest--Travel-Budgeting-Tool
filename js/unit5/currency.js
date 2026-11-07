@@ -1,7 +1,7 @@
 /* UNIT V: MULTI-CURRENCY CONVERTER */
 document.addEventListener("DOMContentLoaded", function() {
     const currencyForm = document.getElementById("dashboardCurrencyForm");
-    const demoRates = { "USD": 1.0, "INR": 84.10, "EUR": 0.92, "GBP": 0.79, "AED": 3.67, "THB": 33.80, "JPY": 152.40, "SGD": 1.34, "AUD": 1.51 };
+    const demoRates = { "USD": 1.0, "INR": 94.10, "EUR": 0.92, "GBP": 0.79, "AED": 3.67, "THB": 33.80, "JPY": 152.40, "SGD": 1.34, "AUD": 1.51 };
 
     if (currencyForm) {
         currencyForm.addEventListener("submit", function(e) {
