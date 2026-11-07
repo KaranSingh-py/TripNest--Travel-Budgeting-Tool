@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | TripNest</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body data-page="login" class="auth-body">
+  <header class="public-header">
+    <div class="container header-flex">
+      <a href="./index.html" class="brand-logo" aria-label="TripNest Home">
+        <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--accent-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <span class="brand-text">Trip<strong>Nest</strong></span>
+      </a>
+      <div class="header-actions"><button type="button" id="themeToggleBtn" class="btn btn-icon btn-sm" aria-label="Toggle color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button></div>
+    </div>
+  </header>
+  <main class="auth-container container">
+    <section class="card auth-card">
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <h1>Login</h1>
+        <p class="text-muted">Access your TripNest workspace.</p>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" required value="demo@student.edu">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" required value="travel123">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      </form>
+      <div class="alert alert-info" style="margin-top:1rem;">
+        <strong>Demo administrator</strong><br>
+        Email: admin@tripnest.com<br>
+        Password: Admin@123<br>
+        <small>Client-side academic demonstration account; not secure authentication.</small>
+      </div>
+    </section>
+  </main>
+  <script src="./js/unit4/basic.js"></script>
+  <script src="./js/unit6/error-handler.js"></script>
+  <script src="./js/unit5/storage.js"></script>
+  <script src="./js/unit5/theme.js"></script>
+  <script src="./js/unit5/auth.js"></script>
+  <script src="./js/unit6/app.js"></script>
+</body>
+</html>

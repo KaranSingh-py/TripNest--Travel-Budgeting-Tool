@@ -1,0 +1,10 @@
+@media print {
+  .app-sidebar, .public-header, .workspace-header, .theme-toggle, .btn, button,
+  form, .no-print, .filter-bar { display: none !important; }
+  body, .workspace-main, .card { background: #fff !important; color: #111 !important; box-shadow: none !important; }
+  .workspace-main { width: 100% !important; margin: 0 !important; padding: 0 !important; }
+  a { color: #111 !important; text-decoration: none !important; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #777 !important; color: #111 !important; }
+  .card { break-inside: avoid; border: 1px solid #bbb !important; }
+}
