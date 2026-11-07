@@ -63,9 +63,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         tbody.innerHTML = `
             <tr><td><strong>Duration (Days)</strong></td><td>${daysA} Days</td><td>${daysB} Days</td><td class="text-muted">Diff: ${Math.abs(daysA - daysB)} Days</td></tr>
-            <tr><td><strong>Total Budget</strong></td><td>$${(Number(tripA.totalBudget)||0).toFixed(2)}</td><td>$${(Number(tripB.totalBudget)||0).toFixed(2)}</td><td class="text-muted">Diff: $${Math.abs((Number(tripA.totalBudget)||0) - (Number(tripB.totalBudget)||0)).toFixed(2)}</td></tr>
-            <tr><td><strong>Actual Spending</strong></td><td>$${spentA.toFixed(2)}</td><td>$${spentB.toFixed(2)}</td><td class="text-muted">Diff: $${Math.abs(spentA - spentB).toFixed(2)}</td></tr>
-            <tr style="background-color: var(--bg-alt);"><td><strong>Average Spent / Day</strong></td><td>$${(spentA/daysA).toFixed(2)} / day</td><td>$${(spentB/daysB).toFixed(2)} / day</td><td>-</td></tr>
+            <tr><td><strong>Total Budget</strong></td><td>${formatCurrency(tripA.totalBudget, tripA.currency)}</td><td>${formatCurrency(tripB.totalBudget, tripB.currency)}</td><td class="text-muted">Compare currencies separately</td></tr>
+            <tr><td><strong>Actual Spending</strong></td><td>${formatCurrency(spentA, tripA.currency)}</td><td>${formatCurrency(spentB, tripB.currency)}</td><td class="text-muted">—</td></tr>
+            <tr style="background-color: var(--bg-alt);"><td><strong>Average Spent / Day</strong></td><td>${formatCurrency(spentA/daysA, tripA.currency)} / day</td><td>${formatCurrency(spentB/daysB, tripB.currency)} / day</td><td>-</td></tr>
         `;
     }
 

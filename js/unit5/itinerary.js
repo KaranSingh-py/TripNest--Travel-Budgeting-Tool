@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const itinForm = document.getElementById("itineraryForm");
     const itinListContainer = document.getElementById("itineraryListContainer");
 
+    const currentTrip = AppStorage.getUserRecords("tbt_trips", AppStorage.getActiveUser()?.id || "").find(t => t.id === currentTripId);
+    const tripCurrency = currentTrip?.currency || "INR";
+
     function renderItinerary() {
         if (!itinListContainer) return;
         const tripItins = AppStorage.readRecords("tbt_itineraries").filter(i => i.tripId === currentTripId);
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <p class="text-muted">Location: ${escapeHTML(itin.location)} | Category: ${itin.category}</p>
                         </div>
                         <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
-                            <strong>Est: $${Number(itin.estimatedCost).toFixed(2)}</strong>
+                            <strong>Est: ${formatCurrency(itin.estimatedCost, tripCurrency)}</strong>
                             <div>
                                 <button class="btn btn-outline btn-xs convert-to-expense" data-id="${itin.id}">Log Exp</button>
                                 <button class="btn btn-danger btn-xs delete-itin" data-id="${itin.id}">Del</button>
@@ -42,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 `;
             });
         }
-        if (document.getElementById("detailItineraryEstText")) { document.getElementById("detailItineraryEstText").textContent = `Itinerary Est: $${totalEstCost.toFixed(2)}`; }
+        if (document.getElementById("detailItineraryEstText")) { document.getElementById("detailItineraryEstText").textContent = `Itinerary Est: ${formatCurrency(totalEstCost, tripCurrency)}`; }
     }
 
     if (itinForm) {

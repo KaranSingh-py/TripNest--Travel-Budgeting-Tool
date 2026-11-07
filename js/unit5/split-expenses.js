@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const travelersList = document.getElementById("detailTravelersList");
     const addTravelerForm = document.getElementById("addTravelerForm");
 
+    const splitTrip = AppStorage.getUserRecords("tbt_trips", AppStorage.getActiveUser()?.id || "").find(t => t.id === currentTripId);
+    const splitCurrency = splitTrip?.currency || "INR";
     let tripTravelers = AppStorage.readRecords(`tbt_travelers_${currentTripId}`);
     if (tripTravelers.length === 0) {
         tripTravelers = [activeUser.name]; 
@@ -50,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
         tripTravelers.forEach(t => {
             const paid = paidTotals[t] || 0;
             const balance = paid - share;
-            let balanceHtml = balance > 0.01 ? `<td class="text-success">Owed +$${balance.toFixed(2)}</td>` : (balance < -0.01 ? `<td class="text-danger">Owes -$${Math.abs(balance).toFixed(2)}</td>` : `<td>Settled</td>`);
-            splitTbody.innerHTML += `<tr><td>${t}</td><td>$${paid.toFixed(2)}</td><td>$${share.toFixed(2)}</td>${balanceHtml}</tr>`;
+            let balanceHtml = balance > 0.01 ? `<td class="text-success">Owed +${formatCurrency(balance, splitCurrency)}</td>` : (balance < -0.01 ? `<td class="text-danger">Owes -${formatCurrency(Math.abs(balance), splitCurrency)}</td>` : `<td>Settled</td>`);
+            splitTbody.innerHTML += `<tr><td>${t}</td><td>${formatCurrency(paid, splitCurrency)}</td><td>${formatCurrency(share, splitCurrency)}</td>${balanceHtml}</tr>`;
         });
     }
 

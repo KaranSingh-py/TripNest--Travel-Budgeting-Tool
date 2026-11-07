@@ -24,7 +24,7 @@
         <div class="user-avatar" id="sidebarUserAvatar">AR</div>
         <div class="user-info">
           <strong id="sidebarUserName">Alex Rivera</strong>
-          <span class="user-meta" id="sidebarUserCurrency">Home: USD</span>
+          <span class="user-meta" id="sidebarUserCurrency">Home: INR</span>
         </div>
       </div>
       <nav class="sidebar-nav">
@@ -74,10 +74,10 @@
         <section id="overviewSection" class="card">
           <div class="card-header-flex"><h2 id="overviewHeading">1. Trip Overview</h2><span class="badge badge-info" id="detailStatusBadge">Active</span></div>
           <div class="kpi-grid">
-            <div class="kpi-box"><span class="kpi-label">Total Budget</span><strong class="kpi-value" id="detailTotalBudget">$0.00</strong><small class="text-muted" id="detailContingencyText">Contingency: $0</small></div>
-            <div class="kpi-box"><span class="kpi-label">Actual Spent</span><strong class="kpi-value text-teal" id="detailTotalSpent">$0.00</strong><small class="text-muted" id="detailSpentPercentText">0%</small></div>
-            <div class="kpi-box"><span class="kpi-label">Remaining Balance</span><strong class="kpi-value text-success" id="detailRemaining">$0.00</strong><small class="text-muted" id="detailHealthMessage">Safe Margin</small></div>
-            <div class="kpi-box"><span class="kpi-label">Safe Daily Limit</span><strong class="kpi-value" id="detailDailyLimit">$0.00 / day</strong><small class="text-muted" id="detailItineraryEstText">Itinerary Est: $0</small></div>
+            <div class="kpi-box"><span class="kpi-label">Total Budget</span><strong class="kpi-value" id="detailTotalBudget">₹0.00</strong><small class="text-muted" id="detailContingencyText">Contingency: ₹0</small></div>
+            <div class="kpi-box"><span class="kpi-label">Actual Spent</span><strong class="kpi-value text-teal" id="detailTotalSpent">₹0.00</strong><small class="text-muted" id="detailSpentPercentText">0%</small></div>
+            <div class="kpi-box"><span class="kpi-label">Remaining Balance</span><strong class="kpi-value text-success" id="detailRemaining">₹0.00</strong><small class="text-muted" id="detailHealthMessage">Safe Margin</small></div>
+            <div class="kpi-box"><span class="kpi-label">Safe Daily Limit</span><strong class="kpi-value" id="detailDailyLimit">₹0.00 / day</strong><small class="text-muted" id="detailItineraryEstText">Itinerary Est: ₹0</small></div>
           </div>
         </section>
 
@@ -106,7 +106,7 @@
               <option value="Local transportation">Local transportation</option><option value="Activities and sightseeing">Activities and sightseeing</option>
               <option value="Shopping">Shopping</option><option value="Miscellaneous">Miscellaneous</option>
             </select>
-            <input type="number" id="allocAmountInput" min="0" step="1" required placeholder="Limit $">
+            <input type="number" id="allocAmountInput" min="0" step="1" required placeholder="Limit ₹">
             <button type="submit" class="btn btn-secondary btn-sm">Update Category</button>
           </form>
         </section>
@@ -151,7 +151,7 @@
             <ul id="paymentChecklistUl" class="checklist-items"></ul>
             <form id="addPaymentChecklistForm" class="inline-add-form">
               <input type="text" id="newChecklistTitle" placeholder="Payment item..." required>
-              <input type="number" id="newChecklistAmount" placeholder="Amt ($)" required>
+              <input type="number" id="newChecklistAmount" placeholder="Amt (₹)" required>
               <button type="submit" class="btn btn-secondary btn-sm">Add</button>
             </form>
           </section>

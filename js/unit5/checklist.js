@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const isDone = type === 'pay' ? item.isPaid : item.isPacked;
                 if (isDone) compCount++;
                 const textClass = isDone ? "completed-text" : "";
-                const lbl = type === 'pay' ? `${item.title} ($${item.amountDue})` : `[${item.category}] ${item.name}`;
+                const lbl = type === 'pay' ? `${item.title} (${formatCurrency(item.amountDue, item.currency || "INR")})` : `[${item.category}] ${item.name}`;
                 ul.innerHTML += `
                     <li class="checklist-row">
                         <input type="checkbox" class="chk-toggle" data-id="${item.id}" ${isDone ? 'checked' : ''}>

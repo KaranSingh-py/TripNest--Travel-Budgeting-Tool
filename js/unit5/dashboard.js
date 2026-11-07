@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const exp = allExpenses.filter(e => e.tripId === trip.id).reduce((s, e) => s + Number(e.amount), 0);
             list.innerHTML += `<article class="list-item-card">
                 <div><h3><a href="./trip-details.html?id=${trip.id}">${trip.tripName}</a></h3><p class="text-muted">${trip.startDate} | ${trip.currency}</p></div>
-                <div class="list-item-meta"><span class="badge badge-info">${trip.status}</span><strong>$${exp.toFixed(0)} / $${trip.totalBudget.toFixed(0)}</strong></div>
+                <div class="list-item-meta"><span class="badge badge-info">${trip.status}</span><strong>${formatCurrency(exp, trip.currency)} / ${formatCurrency(trip.totalBudget, trip.currency)}</strong></div>
             </article>`;
         });
     }

@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <td><span class="badge badge-info">${exp.category}</span></td>
                 <td>${exp.paidBy || activeUser.name}</td>
                 <td>${exp.currency} ${Number(exp.amount).toFixed(2)}</td>
-                <td><strong>$${Number(exp.amount).toFixed(2)}</strong></td>
+                <td><strong>${formatCurrency(exp.amount, exp.currency || "INR")}</strong></td>
                 <td><span class="text-muted">None</span></td>
                 <td><button class="btn btn-outline btn-xs action-edit-exp" data-id="${exp.id}">Edit</button> <button class="btn btn-danger btn-xs action-delete-exp" data-id="${exp.id}">Del</button></td>
             </tr>`;

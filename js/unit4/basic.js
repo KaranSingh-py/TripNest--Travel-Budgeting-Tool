@@ -45,3 +45,20 @@ function escapeHTML(value) {
         .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
+
+/* Currency formatting shared by all pages. Uses the currency selected for the record. */
+function formatCurrency(amount, currencyCode) {
+    const code = String(currencyCode || "INR").toUpperCase();
+    const value = Number(amount);
+    if (!Number.isFinite(value)) return `${code} 0.00`;
+    try {
+        return new Intl.NumberFormat(code === "INR" ? "en-IN" : "en-US", {
+            style: "currency",
+            currency: code,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(value);
+    } catch (error) {
+        return `${code} ${value.toFixed(2)}`;
+    }
+}

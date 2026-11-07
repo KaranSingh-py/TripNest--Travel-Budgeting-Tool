@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <h3>${escapeHTML(trip.tripName)}</h3>
                     <p class="trip-destination">${escapeHTML(trip.destination)}</p>
                     <p class="trip-dates">${trip.startDate} to ${trip.endDate}</p>
-                    <div class="trip-budget-summary"><strong>Budget: $${Number(trip.totalBudget).toFixed(2)}</strong></div>
+                    <div class="trip-budget-summary"><strong>Budget: ${formatCurrency(trip.totalBudget, trip.currency)}</strong></div>
                     <div class="card-actions">
                         <a href="./trip-details.html?id=${trip.id}" class="btn btn-primary btn-sm">Open Workspace</a>
                         <button class="btn btn-outline btn-sm action-edit" data-id="${trip.id}">Edit</button>
