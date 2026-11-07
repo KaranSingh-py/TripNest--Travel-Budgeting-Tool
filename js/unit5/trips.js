@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         grid.innerHTML = "";
         if (trips.length === 0) {
             grid.innerHTML = `<p class="text-muted">No trips found.</p>`;
+            if (typeof window.applyTripFilters === "function") window.applyTripFilters();
             return;
         }
         trips.forEach(trip => {
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p class="trip-dates">${trip.startDate} to ${trip.endDate}</p>
                     <div class="trip-budget-summary"><strong>Budget: ${formatCurrency(trip.totalBudget, trip.currency)}</strong></div>
                     <div class="card-actions">
-                        <a href="./trip-details.html?id=${trip.id}" class="btn btn-primary btn-sm">Open Workspace</a>
+                        <a href="./trip-details.html?id=${encodeURIComponent(trip.id)}" class="btn btn-primary btn-sm">Open Workspace</a>
                         <button class="btn btn-outline btn-sm action-edit" data-id="${trip.id}">Edit</button>
                         <button class="btn btn-outline btn-sm action-duplicate" data-id="${trip.id}">Duplicate</button>
                         <button class="btn btn-outline btn-sm action-archive" data-id="${trip.id}">Archive</button>
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 </article>
             `;
         });
+        if (typeof window.applyTripFilters === "function") window.applyTripFilters();
     }
 
     if (tripForm) {
@@ -60,15 +62,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (grid) {
         grid.addEventListener("click", function(e) {
-            const id = e.target.getAttribute("data-id");
+            const action = e.target.closest("button[data-id]");
+            if (!action || !grid.contains(action)) return;
+            const id = action.getAttribute("data-id");
             if (!id) return;
-            if (e.target.classList.contains("action-duplicate")) {
+            if (action.classList.contains("action-duplicate")) {
                 const original = AppStorage.getUserRecords("tbt_trips", activeUser.id).find(t => t.id === id);
                 if (original) { const copy = Object.assign({}, original, {id:"trip_"+Date.now(), tripName:original.tripName+" (Copy)", status:"planning", creationDate:new Date().toISOString()}); AppStorage.saveUserRecord("tbt_trips", copy); renderTrips(); }
-            } else if (e.target.classList.contains("action-archive")) {
+            } else if (action.classList.contains("action-archive")) {
                 const all = AppStorage.readRecords("tbt_trips"); const trip = all.find(t => t.id === id && t.userId === activeUser.id);
                 if (trip) { trip.status = "archived"; AppStorage.saveRecords("tbt_trips", all); renderTrips(); }
-            } else if (e.target.classList.contains("action-delete")) {
+            } else if (action.classList.contains("action-delete")) {
                 if (confirm("Delete this trip?")) {
                     AppStorage.saveRecords("tbt_trips", AppStorage.readRecords("tbt_trips").filter(t => t.id !== id || t.userId !== activeUser.id));
                     AppStorage.saveRecords("tbt_expenses", AppStorage.readRecords("tbt_expenses").filter(x => x.tripId !== id || x.userId !== activeUser.id));
@@ -78,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     localStorage.removeItem("tbt_travelers_" + id);
                     renderTrips();
                 }
-            } else if (e.target.classList.contains("action-edit")) {
+            } else if (action.classList.contains("action-edit")) {
                 const trip = AppStorage.getUserRecords("tbt_trips", activeUser.id).find(t => t.id === id);
                 if (trip) {
                     document.getElementById("tripIdInput").value = trip.id;
