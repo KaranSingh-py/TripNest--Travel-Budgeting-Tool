@@ -27,7 +27,5 @@ document.addEventListener("DOMContentLoaded", function() {
             if (feedback) { feedback.textContent = "Profile updated."; feedback.classList.remove("hidden"); }
         });
     }
-    document.querySelectorAll("[data-print-page]").forEach(function(button) {
-        button.addEventListener("click", function() { window.print(); });
-    });
+    
 });
